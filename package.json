@@ -1,0 +1,72 @@
+{
+  "name": "database",
+  "displayName": "数据库管理插件",
+  "description": "SSCMS 数据库管理插件能够实现数据库管理，进行SQL查询以及执行SQL命令",
+  "version": "1.0.0",
+  "license": "GPL-3.0",
+  "publisher": "sscms",
+  "engines": {
+    "sscms": "^7.0.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "内容"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siteserver/sscms.database"
+  },
+  "icon": "/assets/database/logo.svg",
+  "output": "bin/Release/netcoreapp3.1",
+  "main": "SSCMS.Database.dll",
+  "extensions": {
+    "permissions": {
+      "database_tables": {
+        "text": "表结构查看器",
+        "type": "app"
+      },
+      "database_query": {
+        "text": "SQL语句查询",
+        "type": "app"
+      },
+      "database_execute": {
+        "text": "执行SQL命令",
+        "type": "app"
+      }
+    },
+    "menus:app_plugins_all:menus": {
+      "database_all": {
+        "text": "数据库管理",
+        "iconClass": "fa fa-database",
+        "type": "app",
+        "permissions": [
+          "database_tables",
+          "database_query",
+          "database_execute"
+        ],
+        "menus": {
+          "database_tables": {
+            "text": "表结构查看器",
+            "link": "/ss-admin/database/tables/",
+            "permissions": ["database_tables"],
+            "order": 1
+          },
+          "database_query": {
+            "text": "SQL语句查询",
+            "link": "/ss-admin/database/query/",
+            "permissions": ["database_query"],
+            "order": 2
+          },
+          "database_execute": {
+            "text": "执行SQL命令",
+            "link": "/ss-admin/database/execute/",
+            "permissions": ["database_execute"],
+            "order": 3
+          }
+        }
+      }
+    }
+  }
+}
