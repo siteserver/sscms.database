@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SSCMS.Database.Implements;
+using SSCMS.Database.Core;
 using SSCMS.Extensions;
 using SSCMS.Services;
 using SSCMS.Utils;

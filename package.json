@@ -25,22 +25,22 @@
     "permissions": {
       "database_tables": {
         "text": "表结构查看器",
-        "type": "app"
+        "type": ["app"]
       },
       "database_query": {
         "text": "SQL语句查询",
-        "type": "app"
+        "type": ["app"]
       },
       "database_execute": {
         "text": "执行SQL命令",
-        "type": "app"
+        "type": ["app"]
       }
     },
     "menus:app_plugins_all:menus": {
       "database_all": {
         "text": "数据库管理",
         "iconClass": "fa fa-database",
-        "type": "app",
+        "type": ["app"],
         "permissions": [
           "database_tables",
           "database_query",

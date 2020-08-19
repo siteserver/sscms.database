@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 using SSCMS.Services;
 using SSCMS.Utils;
 
-namespace SSCMS.Database.Implements
+namespace SSCMS.Database.Core
 {
     public class DatabaseManager : Abstractions.IDatabaseManager
     {

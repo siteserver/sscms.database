@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SSCMS.Database.Implements;
+using SSCMS.Database.Core;
 using SSCMS.Services;
 using SSCMS.Utils;
 using IDatabaseManager = SSCMS.Database.Abstractions.IDatabaseManager;

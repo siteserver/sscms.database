@@ -1,10 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using SSCMS.Database.Abstractions;
+using SSCMS.Database.Core;
 using SSCMS.Plugins;
 
-namespace SSCMS.Database.Implements
+namespace SSCMS.Database
 {
-    public class PluginConfigureServices : IPluginConfigureServices
+    public class Startup : IPluginConfigureServices
     {
         public void ConfigureServices(IServiceCollection services)
         {
