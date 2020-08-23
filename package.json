@@ -2,7 +2,7 @@
   "name": "database",
   "displayName": "数据库管理插件",
   "description": "SSCMS 数据库管理插件能够实现数据库管理，进行SQL查询以及执行SQL命令",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "GPL-3.0",
   "publisher": "sscms",
   "engines": {
@@ -19,7 +19,7 @@
     "url": "https://github.com/siteserver/sscms.database"
   },
   "icon": "/assets/database/logo.svg",
-  "output": "bin/Release/netcoreapp3.1",
+  "output": "",
   "main": "SSCMS.Database.dll",
   "extensions": {
     "permissions": {

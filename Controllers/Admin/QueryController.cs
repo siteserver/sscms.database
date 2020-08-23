@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SSCMS.Configuration;
 using SSCMS.Database.Core;
 using SSCMS.Extensions;
 using SSCMS.Services;
@@ -11,7 +12,7 @@ using IDatabaseManager = SSCMS.Database.Abstractions.IDatabaseManager;
 
 namespace SSCMS.Database.Controllers.Admin
 {
-    [Authorize(Roles = AuthTypes.Roles.Administrator)]
+    [Authorize(Roles = Types.Roles.Administrator)]
     [Route(Constants.ApiAdminPrefix)]
     public partial class QueryController : ControllerBase
     {

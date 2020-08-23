@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SSCMS.Configuration;
 using SSCMS.Database.Core;
 using SSCMS.Dto;
 using SSCMS.Extensions;
@@ -10,7 +11,7 @@ using IDatabaseManager = SSCMS.Database.Abstractions.IDatabaseManager;
 
 namespace SSCMS.Database.Controllers.Admin
 {
-    [Authorize(Roles = AuthTypes.Roles.Administrator)]
+    [Authorize(Roles = Types.Roles.Administrator)]
     [Route(Constants.ApiAdminPrefix)]
     public partial class ExecuteController : ControllerBase
     {

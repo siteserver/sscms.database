@@ -1,15 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 
-    <ItemGroup>
+  <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <ProjectReference Include="..\..\..\SSCMS\SSCMS.csproj" />
     <Content Update="wwwroot\**\*" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="README.md" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="CHANGELOG.md" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SSCMS" Version="7.0.0" />
   </ItemGroup>
 
 </Project>
