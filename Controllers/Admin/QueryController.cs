@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SSCMS.Configuration;
 using SSCMS.Database.Core;
-using SSCMS.Extensions;
 using SSCMS.Services;
 using SSCMS.Utils;
 using IDatabaseManager = SSCMS.Database.Abstractions.IDatabaseManager;
