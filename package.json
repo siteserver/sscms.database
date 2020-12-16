@@ -6,13 +6,15 @@
   "license": "GPL-3.0",
   "publisher": "sscms",
   "engines": {
-    "sscms": "^7.0.0"
+    "sscms": "^7.0.5"
   },
   "categories": [
     "Other"
   ],
   "keywords": [
-    "内容"
+    "数据库",
+    "SQL查询",
+    "SQL命令"
   ],
   "repository": {
     "type": "git",
