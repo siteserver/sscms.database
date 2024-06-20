@@ -1,8 +1,8 @@
 var $url = '/database/query';
+var $urlExport = '/database/query/actions/export';
 
 var data = utils.init({
   siteId: utils.getQueryInt('siteId'),
-  advertisementType: utils.getQueryString('advertisementType'),
   form: {
     query: ''
   },
@@ -29,16 +29,19 @@ var methods = {
     });
   },
 
-  getColumnAttributes: function(columnInfo) {
-    var val = '';
-    if(columnInfo.isIdentity) val += ", 自增长";
-    if(columnInfo.isPrimaryKey) val += ", 主键";
-    if(columnInfo.isExtend) val += ", 扩展字段";
-    if(val)
-    {
-      val = val.substr(2);
-    }
-    return val;
+  apiExport: function () {
+    var $this = this;
+
+    utils.loading($this, true);
+    $api.post($urlExport, this.form).then(function (response) {
+      var res = response.data;
+
+      window.open(res.value);
+    }).catch(function (error) {
+      utils.error(error);
+    }).then(function () {
+      utils.loading($this, false);
+    });
   },
 
   btnSubmitClick: function () {
@@ -46,6 +49,15 @@ var methods = {
     this.$refs.form.validate(function(valid) {
       if (valid) {
         $this.apiQuery();
+      }
+    });
+  },
+
+  btnExportClick: function () {
+    var $this = this;
+    this.$refs.form.validate(function(valid) {
+      if (valid) {
+        $this.apiExport();
       }
     });
   }

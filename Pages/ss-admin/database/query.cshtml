@@ -19,6 +19,9 @@
   <el-button size="small" type="primary" v-on:click="btnSubmitClick">
     查 询
   </el-button>
+  <el-button v-if="form.query && properties && results" size="small" type="primary" v-on:click="btnExportClick">
+    导出Excel
+  </el-button>
 </div>
 
 <template v-if="form.query && properties && results">

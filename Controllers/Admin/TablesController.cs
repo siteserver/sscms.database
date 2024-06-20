@@ -1,10 +1,9 @@
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using Datory;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SSCMS.Configuration;
-using SSCMS.Database.Core;
 using SSCMS.Services;
-using SSCMS.Utils;
 using IDatabaseManager = SSCMS.Database.Abstractions.IDatabaseManager;
 
 namespace SSCMS.Database.Controllers.Admin
@@ -24,33 +23,20 @@ namespace SSCMS.Database.Controllers.Admin
             _databaseManager = databaseManager;
         }
 
-        [HttpGet, Route(Route)]
-        public async Task<ActionResult<GetResult>> Get()
+        public class GetResult
         {
-            if (!await _authManager.HasAppPermissionsAsync(DatabaseManager.PermissionsTables))
-            {
-                return Unauthorized();
-            }
-
-            return new GetResult
-            {
-                TableNames = await _databaseManager.GetTableNamesAsync()
-            };
+            public List<string> TableNames { get; set; }
         }
 
-        [HttpPost, Route(Route)]
-        public async Task<ActionResult<PostResult>> GetTableColumnInfoList([FromBody] PostRequest request)
+        public class PostRequest
         {
-            if (!await _authManager.HasAppPermissionsAsync(DatabaseManager.PermissionsTables))
-            {
-                return Unauthorized();
-            }
+            public string TableName { get; set; }
+        }
 
-            return new PostResult
-            {
-                TableColumns = await _databaseManager.GetTableColumnsAsync(request.TableName),
-                Count = await _databaseManager.CountAsync(request.TableName)
-            };
+        public class PostResult
+        {
+            public List<TableColumn> TableColumns { get; set; }
+            public int Count { get; set; }
         }
     }
 }

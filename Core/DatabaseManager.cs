@@ -56,24 +56,31 @@ namespace SSCMS.Database.Core
             }
         }
 
-        public List<string> GetPropertyKeysForDynamic(dynamic dynamicToGetPropertiesFor)
+        public List<string> GetPropertyKeysForDynamic(dynamic dynamicToGetPropertiesFor, bool toCamelCase)
         {
             var jObject = (JObject) JToken.FromObject(dynamicToGetPropertiesFor);
             var values = jObject.ToObject<Dictionary<string, object>>();
             var toReturn = new List<string>();
             foreach (var key in values.Keys)
             {
-                if (StringUtils.EqualsIgnoreCase(key, "id"))
+                if (toCamelCase)
                 {
-                    toReturn.Add("id");
-                }
-                else if (StringUtils.EqualsIgnoreCase(key, "guid"))
-                {
-                    toReturn.Add("guid");
+                    if (StringUtils.EqualsIgnoreCase(key, "id"))
+                    {
+                        toReturn.Add("id");
+                    }
+                    else if (StringUtils.EqualsIgnoreCase(key, "guid"))
+                    {
+                        toReturn.Add("guid");
+                    }
+                    else
+                    {
+                        toReturn.Add(StringUtils.ToCamelCase(key));
+                    }
                 }
                 else
                 {
-                    toReturn.Add(StringUtils.ToCamelCase(key));
+                    toReturn.Add(key);
                 }
             }
 

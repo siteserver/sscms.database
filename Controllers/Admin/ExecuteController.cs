@@ -1,11 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SSCMS.Configuration;
-using SSCMS.Database.Core;
-using SSCMS.Dto;
 using SSCMS.Services;
-using SSCMS.Utils;
 using IDatabaseManager = SSCMS.Database.Abstractions.IDatabaseManager;
 
 namespace SSCMS.Database.Controllers.Admin
@@ -27,25 +23,10 @@ namespace SSCMS.Database.Controllers.Admin
             _databaseManager = databaseManager;
         }
 
-        [HttpPost, Route(Route)]
-        public async Task<ActionResult<BoolResult>> Execute([FromBody] ExecuteRequest request)
+        public class ExecuteRequest
         {
-            if (!await _authManager.HasAppPermissionsAsync(DatabaseManager.PermissionsExecute))
-            {
-                return Unauthorized();
-            }
-
-            if (request.SecurityKey != _settingsManager.SecurityKey)
-            {
-                return this.Error("SecurityKey 输入错误！");
-            }
-
-            await _databaseManager.ExecuteAsync(request.Execute);
-
-            return new BoolResult
-            {
-                Value = true
-            };
+            public string Execute { get; set; }
+            public string SecurityKey { get; set; }
         }
     }
 }

@@ -1,13 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SSCMS.Configuration;
-using SSCMS.Database.Core;
 using SSCMS.Services;
-using SSCMS.Utils;
-using IDatabaseManager = SSCMS.Database.Abstractions.IDatabaseManager;
 
 namespace SSCMS.Database.Controllers.Admin
 {
@@ -16,48 +11,29 @@ namespace SSCMS.Database.Controllers.Admin
     public partial class QueryController : ControllerBase
     {
         private const string Route = "database/query";
+        private const string RouteExport = "database/query/actions/export";
 
         private readonly IAuthManager _authManager;
-        private readonly IDatabaseManager _databaseManager;
+        private readonly IPathManager _pathManager;
+        private readonly Abstractions.IDatabaseManager _databaseManager;
 
-        public QueryController(IAuthManager authManager, IDatabaseManager databaseManager)
+        public QueryController(IAuthManager authManager, IPathManager pathManager, Abstractions.IDatabaseManager databaseManager)
         {
             _authManager = authManager;
+            _pathManager = pathManager;
             _databaseManager = databaseManager;
         }
 
-        [HttpPost, Route(Route)]
-        public async Task<ActionResult<QueryResult>> Query([FromBody] QueryRequest request)
+        public class QueryRequest
         {
-            if (!await _authManager.HasAppPermissionsAsync(DatabaseManager.PermissionsQuery))
-            {
-                return Unauthorized();
-            }
+            public string Query { get; set; }
+        }
 
-            if (!StringUtils.StartsWithIgnoreCase(request.Query, "SELECT"))
-            {
-                return this.Error("请输入有效的查询SQL语句！");
-            }
-
-            var results = await _databaseManager.QueryAsync(request.Query);
-            List<string> properties = null;
-            var count = 0;
-            if (results != null)
-            {
-                count = results.Count;
-                if (count > 0)
-                {
-                    var dataInfo = results.FirstOrDefault();
-                    properties = _databaseManager.GetPropertyKeysForDynamic(dataInfo);
-                }
-            }
-
-            return new QueryResult
-            {
-                Results = results,
-                Properties = properties,
-                Count = count
-            };
+        public class QueryResult
+        {
+            public List<dynamic> Results { get; set; }
+            public List<string> Properties { get; set; }
+            public int Count { get; set; }
         }
     }
 }

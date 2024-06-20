@@ -16,6 +16,6 @@ namespace SSCMS.Database.Abstractions
 
         Task<List<dynamic>> QueryAsync(string query);
 
-        List<string> GetPropertyKeysForDynamic(dynamic dynamicToGetPropertiesFor);
+        List<string> GetPropertyKeysForDynamic(dynamic dynamicToGetPropertiesFor, bool toCamelCase);
     }
 }
